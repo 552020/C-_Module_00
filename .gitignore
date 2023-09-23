@@ -1,7 +1,6 @@
-internal/
-.o
-
+# Ignore everything
 *
+# But not these files...
 !*.c
 !*.cpp
 !*.h
@@ -13,3 +12,7 @@ internal/
 !Makefile
 !CMakeLists.txt
 !.gitignore
+# Do not ignore directories
+!*/
+# Specifically ignore the internal directory
+internal/
