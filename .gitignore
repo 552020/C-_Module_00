@@ -6,10 +6,10 @@ internal/
 !*.cpp
 !*.h
 !*.hpp
-!.*md
-!.*txt
-!.*sh
-!.*py
+!*.md
+!*.txt
+!*.sh
+!*.py
 !Makefile
 !CMakeLists.txt
 !.gitignore
