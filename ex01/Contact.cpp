@@ -1,9 +1,5 @@
 #include "Contact.hpp"
 
-Contact::Contact() :
-	firstName("DefaultFirstName"),
-	lastName("DefaultLastName"),
-	nickname("DefaultNickname"),
-	phoneNumber("000-000-0000),
-	darkestSecret("N/A") {
-	}
+Contact::Contact()
+    : firstName("John"), lastName("Doe"), nickname("Johnny"),
+      phoneNumber("123-456-7890"), darkestSecret("N/A") {}

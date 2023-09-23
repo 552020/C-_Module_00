@@ -6,9 +6,8 @@
 class PhoneBook
 {
 	private:
-		Contact contacts[8];
-		int currentContacts;
-		int oldestContactIndex;
+		Contact _contacts[8];
+		int _currentContacts;
 
 	public:
 		PhoneBook();
