@@ -1,11 +1,22 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 
+std::string trim(const std::string &str)
+{
+	size_t first = str.find_first_not_of(" \t\n\r\f\v");
+	if (first == std::string::npos)
+		return "";
+
+	size_t last = str.find_last_not_of(" \t\n\r\f\v");
+	return str.substr(first, (last - first + 1));
+}
+
 std::string getInput(const std::string &fieldName)
 {
 	std::string input;
 	std::cout << "Enter the " << fieldName << " : ";
 	std::getline(std::cin, input);
+	input = trim(input);
 	if (input.empty())
 	{
 		std::cout << fieldName << " not provided! Using dafault value: N/A" << std::endl;
@@ -43,6 +54,8 @@ int promptForIndex(int maxIndex)
 		}
 		break;
 	} while (--maxAttempts > 0);
+	// Return -1 or other suitable value to indicate the function exited without a valid index
+	return -1;
 }
 
 int main()
@@ -78,16 +91,25 @@ int main()
 		else if (command == "SEARCH")
 		{
 			phonebook.displayContacts();
-			std::string indexString;
-			std::cout << "Enter the index of the contact you want to see the details of : ";
-			std::getline(std::cin, indexString);
-			if (indexString.empty())
+			int index = promptForIndex(8);
+			if (index != -1)
 			{
-				std::cout << "Index not provided! Returning to main menu." << std::endl;
-				continue;
+				phonebook.displayContactDetails(index);
 			}
-			int index = std::stoi(indexString);
-			phonebook.displayContactDetails(index);
+			else
+			{
+				std::cout << "Returning to main menu." << std::endl;
+			}
+			// std::string indexString;
+			// std::cout << "Enter the index of the contact you want to see the details of : ";
+			// std::getline(std::cin, indexString);
+			// if (indexString.empty())
+			// {
+			// 	std::cout << "Index not provided! Returning to main menu." << std::endl;
+			// 	continue;
+			// }
+			// int index = std::stoi(indexString);
+			// phonebook.displayContactDetails(index);
 		}
 		else if (command == "EXIT")
 			break;

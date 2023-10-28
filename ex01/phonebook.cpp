@@ -1,7 +1,8 @@
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <iomanip>
 
-PhoneBook::PhoneBook() : _currentContacts(0)) {}
+PhoneBook::PhoneBook() : _currentContacts(0) {}
 PhoneBook::~PhoneBook() {}
 
 void PhoneBook::addContact(const Contact &contact)
@@ -21,7 +22,7 @@ void PhoneBook::displayContacts() const
 	std::cout << std::setw(10) << "Nickname" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 
-	for (int i = 0; i < _currenctContacts && i < 8; i++)
+	for (int i = 0; i < _currentContacts && i < 8; i++)
 	{
 		std::cout << std::setw(10) << (i + 1) << "|";
 		std::cout << std::setw(10) << truncateEntry(_contacts[i].getFirstName()) << "|";

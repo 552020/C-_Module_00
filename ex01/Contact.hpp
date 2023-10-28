@@ -4,30 +4,32 @@
 #include <iostream>
 #include <string>
 
-class Contact {
-private:
-  std::string _firstName;
-  std::string _lastName;
-  std::string _nickname;
-  std::string _phoneNumber;
-  std::string _darkestSecret;
+class Contact
+{
+  private:
+	std::string _firstName;
+	std::string _lastName;
+	std::string _nickname;
+	std::string _phoneNumber;
+	std::string _darkestSecret;
 
-public:
-  Contact(const std::string &firstName, const std::string &lastName,
-          const std::string &nickname, const std::string &phoneNumber,
-          const std::string &darkestSecret)
-      : _firstName(firstName), _lastName(lastName), _nickname(nickname),
-        _phoneNumber(phoneNumber), _darkestSecret(darkestSecret) {
-    std::cout << "Contact created!" << std::endl;
-  }
-  ~Contact();
+  public:
+	Contact() : _firstName(""), _lastName(""), _nickname(""), _phoneNumber(""), _darkestSecret("") {}
+	Contact(const std::string &firstName, const std::string &lastName, const std::string &nickname,
+			const std::string &phoneNumber, const std::string &darkestSecret)
+		: _firstName(firstName), _lastName(lastName), _nickname(nickname), _phoneNumber(phoneNumber),
+		  _darkestSecret(darkestSecret)
+	{
+		std::cout << "Contact created!" << std::endl;
+	}
+	~Contact();
 
-  // Getters
-  std::string getFirstName() const; // For the meaning of const see Notes.
-  std::string getLastName() const;
-  std::string getNickname() const;
-  std::string getPhoneNumber() const;
-  std::string getDarkestSecret() const;
+	// Getters
+	std::string getFirstName() const; // For the meaning of const see Notes.
+	std::string getLastName() const;
+	std::string getNickname() const;
+	std::string getPhoneNumber() const;
+	std::string getDarkestSecret() const;
 };
 
 #endif
