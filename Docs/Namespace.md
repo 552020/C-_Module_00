@@ -2,7 +2,7 @@
 
 ## Definition
 
-We can define a namespace with the `namespace` keyword. Inside the namespace we then define the members of that namespace
+We can define a namespace with the `namespace` keyword. Inside the namespace we then define the members of that namespace.
 
 ```c++
 
