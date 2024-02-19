@@ -32,7 +32,7 @@ int promptForIndex(int maxIndex)
 
 	do
 	{
-		std::cout << "Enter the index of the contact you want to see the details of : 1-" << maxIndex
+		std::cout << "Enter the index of the contact to see all details: 1-" << maxIndex
 				  << " or q to return to main menu : ";
 		std::cin >> index;
 		if (std::cin.fail())
@@ -66,7 +66,7 @@ int main()
 	std::cout << "Welcome to the PhoneBook!" << std::endl;
 	while (true)
 	{
-		std::cout << "Enter a command (ADD, SEARCH or EXIT) : ";
+		std::cout << "Enter a command (ADD, SEARCH or EXIT): ";
 		std::getline(std::cin, command);
 
 		if (command == "ADD")
