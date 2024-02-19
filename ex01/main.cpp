@@ -11,51 +11,72 @@ std::string trim(const std::string &str)
 	return str.substr(first, (last - first + 1));
 }
 
-std::string getInput(const std::string &fieldName)
+std::string getInput(const std::string fieldName)
 {
+
 	std::string input;
-	std::cout << "Enter the " << fieldName << " : ";
-	std::getline(std::cin, input);
-	input = trim(input);
-	if (input.empty())
+	while (true)
 	{
-		std::cout << fieldName << " not provided! Using dafault value: N/A" << std::endl;
-		input = "N/A";
-	}
-	return input;
-}
-
-int promptForIndex(int maxIndex)
-{
-	int index;
-	int maxAttempts = 3;
-
-	do
-	{
-		std::cout << "Enter the index of the contact to see all details: 1-" << maxIndex
-				  << " or q to return to main menu : ";
-		std::cin >> index;
-		if (std::cin.fail())
+		std::cout << "Enter the " << fieldName << " : ";
+		std::getline(std::cin, input);
+		input = trim(input);
+		if (input.empty())
 		{
-			std::cin.clear();
-			std::string input;
-			std::cin >> input;
-			if (input == "q")
-				return -1;
+			std::cout << fieldName << " not provided! Using default value: N/A" << std::endl;
+			return "N/A";
 		}
-		if (std::cin.good())
+		// Validate input based on fieldName
+		if (fieldName == "phone number")
 		{
-
-			if (index < 1 || index > maxIndex)
+			if (!std::all_of(input.begin(), input.end(), ::isdigit))
 			{
-				std::cout << "Invalid index! Please enter a number between 1 and " << maxIndex << "." << std::endl;
+				std::cout << "Invalid phone number! Phone numbers should contain only digits." << std::endl;
 				continue;
 			}
 		}
-		break;
-	} while (--maxAttempts > 0);
-	// Return -1 or other suitable value to indicate the function exited without a valid index
-	return -1;
+		else if (fieldName == "first name" || fieldName == "last name" || fieldName == "nickname")
+		{
+			if (std::any_of(input.begin(), input.end(), ::isdigit))
+			{
+				std::cout << "Invalid " << fieldName << "! " << fieldName
+						  << " should not continaes numbers! Please enter a valid" << fieldName << "!" << std::endl;
+				continue;
+			}
+		}
+		return input;
+	}
+}
+
+int promptForIndex(int numberOfContacts, const std::string promptMessage)
+{
+	while (true)
+	{
+		std::cout << promptMessage;
+		std::string input;
+		std::getline(std::cin, input);
+
+		if (input == "q")
+			return -1;
+		try
+		{
+			int index = std::stoi(input);
+			if (index < 1 || index > numberOfContacts)
+			{
+				std::cout << "Invalid index! Please enter a number between 1 and " << numberOfContacts
+						  << " or press q to exit!" << std::endl;
+				continue;
+			}
+			return index;
+		}
+		catch (const std::invalid_argument &e)
+		{
+			std::cout << "Invalid input! Please enter a number between 1 and " << numberOfContacts << "." << std::endl;
+		}
+		catch (const std::out_of_range &e)
+		{
+			std::cout << "Invalid input! Please enter a number between 1 and " << numberOfContacts << "." << std::endl;
+		}
+	}
 }
 
 int main()
@@ -85,31 +106,32 @@ int main()
 
 			Contact newContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
 			phonebook.addContact(newContact);
-			std::cout << "Contact added!" << std::endl;
 		}
 
 		else if (command == "SEARCH")
 		{
-			phonebook.displayContacts();
-			int index = promptForIndex(8);
-			if (index != -1)
-			{
-				phonebook.displayContactDetails(index);
-			}
+			int numberOfContacts = phonebook.getCurrentContacts();
+
+			if (numberOfContacts == 0)
+				std::cout << "The PhoneBook is empty!" << std::endl;
 			else
 			{
-				std::cout << "Returning to main menu." << std::endl;
+				phonebook.displayContacts();
+				std::string promptMessage = "Enter the index of the contact to see all details: ";
+				if (numberOfContacts == 1)
+					promptMessage += "There is only 1 contact! Enter 1";
+				else if (numberOfContacts == 2)
+					promptMessage += "1, 2";
+				else
+				{
+					promptMessage += "1-" + std::to_string(numberOfContacts);
+				}
+				promptMessage += " or q to return to main menu : ";
+				int index = promptForIndex(numberOfContacts, promptMessage);
+				if (index == -1)
+					continue;
+				phonebook.displayContactDetails(index);
 			}
-			// std::string indexString;
-			// std::cout << "Enter the index of the contact you want to see the details of : ";
-			// std::getline(std::cin, indexString);
-			// if (indexString.empty())
-			// {
-			// 	std::cout << "Index not provided! Returning to main menu." << std::endl;
-			// 	continue;
-			// }
-			// int index = std::stoi(indexString);
-			// phonebook.displayContactDetails(index);
 		}
 		else if (command == "EXIT")
 			break;

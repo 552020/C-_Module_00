@@ -174,25 +174,13 @@ $>./megaphone
 
                  Solve the exercises in a C++ manner.
 
-
-
-
-                                                    5
-
-  Chapter IV
-
-Exercise 01: My Awesome
-PhoneBook
-
-                                     Exercise : 01
-
-                                 My Awesome PhoneBook
+Exercise 01: My Awesome PhoneBook
 
 Turn-in directory : ex01/
 Files to turn in : Makefile, _.cpp, _.{h, hpp}
 Forbidden functions : None
 
-    Welcome to the 80s and their unbelievable technology! Write a program that behaves
+Welcome to the 80s and their unbelievable technology! Write a program that behaves
 
 like a crappy awesome phonebook software.
 
@@ -210,18 +198,7 @@ of the Contact class. You’re free to design the classes as you like but keep i
 anything that will always be used inside a class is private, and that anything that can be
 used outside a class is public.
 
-              Don’t forget to watch the intranet videos.
-
-
-
-                                            6
-
-Namespaces, classes, member functions, stdio streams,
-C++ - Module 00 initialization lists, static, const, and some other basic stuff
-
-    On program start-up, the phonebook is empty and the user is prompted to enter one
-
-of three commands. The program only accepts ADD, SEARCH and EXIT.
+On program start-up, the phonebook is empty and the user is prompted to enter one of three commands. The program only accepts ADD, SEARCH and EXIT.
 
 • ADD: save a new contact
 
@@ -245,7 +222,7 @@ of three commands. The program only accepts ADD, SEARCH and EXIT.
 
 • EXIT
 
-        ◦ The program quits and the contacts are lost forever!
+◦ The program quits and the contacts are lost forever!
 
 • Any other input is discarded.
 

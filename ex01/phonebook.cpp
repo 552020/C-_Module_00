@@ -9,6 +9,7 @@ void PhoneBook::addContact(const Contact &contact)
 {
 	_contacts[_currentContacts % 8] = contact;
 	_currentContacts++;
+	std::cout << "Contact added!" << std::endl;
 }
 
 void PhoneBook::displayContacts() const
@@ -57,3 +58,5 @@ void PhoneBook::displayContactDetails(int index) const
 	std::cout << "Phone number: " << _contacts[index].getPhoneNumber() << std::endl;
 	std::cout << "Darkest secret: " << _contacts[index].getDarkestSecret() << std::endl;
 }
+
+int PhoneBook::getCurrentContacts() const { return _currentContacts < 8 ? _currentContacts : 8; }
