@@ -12,6 +12,7 @@
 !Makefile
 !CMakeLists.txt
 !.gitignore
+!.clang-format
 # Do not ignore directories
 !*/
 # Specifically ignore the internal directory
