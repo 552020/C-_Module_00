@@ -25,10 +25,17 @@ std::string getInput(const std::string fieldName)
 			std::cout << fieldName << " not provided! Using default value: N/A" << std::endl;
 			return "N/A";
 		}
-		// Validate input based on fieldName
 		if (fieldName == "phone number")
 		{
-			if (!std::all_of(input.begin(), input.end(), ::isdigit))
+			bool allDigits = true;
+			for (size_t i = 0; i < input.length(); ++i) {
+    		if (!isdigit(input[i])) {
+        		allDigits = false;
+        		break;
+    		}
+			}
+			if (!allDigits)
+			//if (!std::all_of(input.begin(), input.end(), ::isdigit))
 			{
 				std::cout << "Invalid phone number! Phone numbers should contain only digits." << std::endl;
 				continue;
