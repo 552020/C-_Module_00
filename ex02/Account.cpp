@@ -1,5 +1,6 @@
 #include "Account.hpp"
 #include <iomanip>
+#include <ctime>
 #include <iostream>
 
 // Initialize static members
@@ -34,10 +35,10 @@ void Account::displayAccountsInfos()
 void Account::_displayTimestamp()
 {
 	// Obtain current time in seconds
-	std::time_t currentTime = std::time(nullptr);
+	time_t currentTime = time(NULL);
 
 	// Convert to local time and store in a tm structure
-	std::tm *localTime = std::localtime(&currentTime);
+	tm *localTime = localtime(&currentTime);
 
 	// Display timestamp in the format [YYYYMMDD_HHMMSS]
 	std::cout << '[' << std::setfill('0') << std::setw(4) << (localTime->tm_year + 1900) << std::setw(2)
