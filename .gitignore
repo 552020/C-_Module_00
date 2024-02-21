@@ -15,4 +15,4 @@
 # Do not ignore directories
 !*/
 # Specifically ignore the internal directory
-internal/
+internal/others/
