@@ -84,6 +84,13 @@ int stringToInt(const std::string &str)
 	return result;
 }
 
+std::string intToString(int value)
+{
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
+}
+
 int promptForIndex(int numberOfContacts, const std::string promptMessage)
 {
 	while (true)
@@ -162,7 +169,8 @@ int main()
 					promptMessage += "1, 2";
 				else
 				{
-					promptMessage += "1-" + std::to_string(numberOfContacts);
+					std::string numberOfContactsStr = intToString(numberOfContacts);
+					promptMessage += "1-" + numberOfContactsStr;
 				}
 				promptMessage += " or q to return to main menu : ";
 				int index = promptForIndex(numberOfContacts, promptMessage);
