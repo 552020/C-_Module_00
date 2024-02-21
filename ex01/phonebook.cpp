@@ -2,8 +2,39 @@
 #include <iostream>
 #include <iomanip>
 
-PhoneBook::PhoneBook() : _currentContacts(0) {}
-PhoneBook::~PhoneBook() {}
+const std::string testFirstNames[8] = {"Alice", "Bob", "Charlie", "Dana", "Evan", "Fiona", "George", "Hannah"};
+const std::string testLastNames[8] = {"Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson"};
+const std::string testNicknames[8] = {"Ally", "Bobby", "Chuck", "Dane", "Evie", "Fee", "Georgie", "Hannie"};
+const std::string darkestSecrets[8] = {"Believes the earth is flat",
+									   "Can't ride a bike",
+									   "Afraid of ducks",
+									   "Secretly a vampire",
+									   "Still uses a flip phone",
+									   "Talks to plants",
+									   "Thinks cereal is soup",
+									   "Wanted to be a clown"};
+const std::string phoneNumbers[8] = {
+	"1234567890", "2345678901", "3456789012", "4567890123", "5678901234", "6789012345", "7890123456", "8901234567"};
+
+PhoneBook::PhoneBook() : _currentContacts(0)
+{
+}
+PhoneBook::PhoneBook(bool fillWithTestData) : _currentContacts(0)
+{
+	if (fillWithTestData)
+	{
+		for (int i = 0; i < 8; ++i)
+		{
+			Contact testContact(
+				testFirstNames[i], testLastNames[i], testNicknames[i], phoneNumbers[i], darkestSecrets[i]);
+			addContact(testContact);
+		}
+	}
+}
+
+PhoneBook::~PhoneBook()
+{
+}
 
 void PhoneBook::addContact(const Contact &contact)
 {
@@ -14,13 +45,13 @@ void PhoneBook::addContact(const Contact &contact)
 
 void PhoneBook::displayContacts() const
 {
-	std::cout << std::setw(10) << "Index"
+	std::cout << std::setw(10) << "index"
 			  << "|";
-	std::cout << std::setw(10) << "First name"
+	std::cout << std::setw(10) << "first name"
 			  << "|";
-	std::cout << std::setw(10) << "Last name"
+	std::cout << std::setw(10) << "last name"
 			  << "|";
-	std::cout << std::setw(10) << "Nickname" << std::endl;
+	std::cout << std::setw(10) << "nickname" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 
 	for (int i = 0; i < _currentContacts && i < 8; i++)
@@ -59,4 +90,7 @@ void PhoneBook::displayContactDetails(int index) const
 	std::cout << "Darkest secret: " << _contacts[index].getDarkestSecret() << std::endl;
 }
 
-int PhoneBook::getCurrentContacts() const { return _currentContacts < 8 ? _currentContacts : 8; }
+int PhoneBook::getCurrentContacts() const
+{
+	return _currentContacts < 8 ? _currentContacts : 8;
+}

@@ -14,13 +14,12 @@ class Contact
 	std::string _darkestSecret;
 
   public:
-	Contact(const std::string &firstName, const std::string &lastName, const std::string &nickname,
-			const std::string &phoneNumber, const std::string &darkestSecret)
-		: _firstName(firstName), _lastName(lastName), _nickname(nickname), _phoneNumber(phoneNumber),
-		  _darkestSecret(darkestSecret)
-	{
-		std::cout << "Contact created!" << std::endl;
-	}
+	Contact();
+	Contact(const std::string &firstName,
+			const std::string &lastName,
+			const std::string &nickname,
+			const std::string &phoneNumber,
+			const std::string &darkestSecret);
 	~Contact();
 
 	// Getters

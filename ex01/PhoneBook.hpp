@@ -12,6 +12,7 @@ class PhoneBook
 
   public:
 	PhoneBook();
+	PhoneBook(bool fillWithTestData);
 	~PhoneBook();
 
 	void addContact(const Contact &contact);

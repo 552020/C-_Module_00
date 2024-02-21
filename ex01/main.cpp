@@ -81,7 +81,8 @@ int promptForIndex(int numberOfContacts, const std::string promptMessage)
 
 int main()
 {
-	PhoneBook phonebook;
+	// PhoneBook phonebook;
+	PhoneBook phonebook(true);
 	std::string command;
 
 	std::cout << "Welcome to the PhoneBook!" << std::endl;
