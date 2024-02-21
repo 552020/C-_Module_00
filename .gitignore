@@ -15,5 +15,6 @@
 !.clang-format
 # Do not ignore directories
 !*/
+!.vscode/
 # Specifically ignore the internal directory
 internal/
