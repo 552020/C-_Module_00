@@ -9,6 +9,7 @@
 !*.txt
 !*.sh
 !*.py
+!*.json
 !Makefile
 !CMakeLists.txt
 !.gitignore
