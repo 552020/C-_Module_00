@@ -1,14 +1,7 @@
 #include "Contact.hpp"
 
-// Default constructor is already defined in Contact.hpp, so no need to redefine it here.
+Contact::~Contact() {}
 
-// Define the destructor (if needed)
-Contact::~Contact()
-{
-	// Any cleanup code if required
-}
-
-// Define getter functions
 std::string Contact::getFirstName() const { return _firstName; }
 
 std::string Contact::getLastName() const { return _lastName; }
