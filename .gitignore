@@ -18,4 +18,4 @@
 !*/
 !.vscode/
 # Specifically ignore the internal directory
-internal/
+internal/secretum/
