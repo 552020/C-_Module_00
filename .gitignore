@@ -9,10 +9,13 @@
 !*.txt
 !*.sh
 !*.py
+!*.json
 !Makefile
 !CMakeLists.txt
 !.gitignore
+!.clang-format
 # Do not ignore directories
 !*/
+!.vscode/
 # Specifically ignore the internal directory
 internal/others/

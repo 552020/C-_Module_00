@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream> // for std::istringstream
+
 #include "PhoneBook.hpp"
 
 std::string trim(const std::string &str)
@@ -28,7 +30,16 @@ std::string getInput(const std::string fieldName)
 		// Validate input based on fieldName
 		if (fieldName == "phone number")
 		{
-			if (!std::all_of(input.begin(), input.end(), ::isdigit))
+			bool allDigits = true;
+			for (size_t i = 0; i < input.length(); ++i)
+			{
+				if (!isdigit(input[i]))
+				{
+					allDigits = false;
+					break;
+				}
+			}
+			if (!allDigits)
 			{
 				std::cout << "Invalid phone number! Phone numbers should contain only digits." << std::endl;
 				continue;
@@ -36,7 +47,18 @@ std::string getInput(const std::string fieldName)
 		}
 		else if (fieldName == "first name" || fieldName == "last name" || fieldName == "nickname")
 		{
-			if (std::any_of(input.begin(), input.end(), ::isdigit))
+			// if (std::any_of(input.begin(), input.end(), ::isdigit))
+			bool anyDigit = false;
+			for (size_t i = 0; i < input.length(); ++i)
+			{
+				if (isdigit(input[i]))
+				{
+					anyDigit = true;
+					break;
+				}
+			}
+			if (anyDigit)
+
 			{
 				std::cout << "Invalid " << fieldName << "! " << fieldName
 						  << " should not continaes numbers! Please enter a valid" << fieldName << "!" << std::endl;
@@ -45,6 +67,28 @@ std::string getInput(const std::string fieldName)
 		}
 		return input;
 	}
+}
+// to perform the conversion
+// std::string to std::int
+int stringToInt(const std::string &str)
+{
+	std::istringstream iss(str);
+	int result;
+	// this line performs the conversion
+	// >> reads from the string stream and parses the string as an integer
+	iss >> result;
+	if (iss.fail() || !iss.eof())
+	{
+		return -1;
+	}
+	return result;
+}
+
+std::string intToString(int value)
+{
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
 }
 
 int promptForIndex(int numberOfContacts, const std::string promptMessage)
@@ -59,7 +103,7 @@ int promptForIndex(int numberOfContacts, const std::string promptMessage)
 			return -1;
 		try
 		{
-			int index = std::stoi(input);
+			int index = stringToInt(input);
 			if (index < 1 || index > numberOfContacts)
 			{
 				std::cout << "Invalid index! Please enter a number between 1 and " << numberOfContacts
@@ -125,7 +169,8 @@ int main()
 					promptMessage += "1, 2";
 				else
 				{
-					promptMessage += "1-" + std::to_string(numberOfContacts);
+					std::string numberOfContactsStr = intToString(numberOfContacts);
+					promptMessage += "1-" + numberOfContactsStr;
 				}
 				promptMessage += " or q to return to main menu : ";
 				int index = promptForIndex(numberOfContacts, promptMessage);
