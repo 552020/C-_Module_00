@@ -1,3 +1,6 @@
+# tests.cpp with some comments
+
+```cpp
 // ************************************************************************** //
 //                                                                            //
 //                tests.cpp for GlobalBanksters United                        //
@@ -93,3 +96,4 @@ int main(void)
 // -*- mode: c++-mode;                                                       -*-
 // -*- fill-column: 75; comment-column: 75;                                  -*-
 // ************************************************************************** //
+```
