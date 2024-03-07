@@ -1,6 +1,6 @@
 # CPP00
 
-Module 00
+C++ Module 00 for the core curriculum @42Berlin.
 
 ## Exercises
 
