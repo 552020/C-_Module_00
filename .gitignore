@@ -16,4 +16,5 @@
 !.clang-format
 # Do not ignore directories
 !*/
-!.vscode/
+.vscode/
+README.md

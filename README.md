@@ -1,4 +1,6 @@
-# C++ Module 00
+# CPP00
+
+Module 00
 
 ## Exercises
 
